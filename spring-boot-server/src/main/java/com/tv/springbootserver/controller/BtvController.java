@@ -25,5 +25,11 @@ public class BtvController {
     public List<TopGenreDto> getTopGenre(@PathVariable int stbId, @PathVariable String now) {
         return service.getTopGenre(stbId, now);
     }
+
+    @GetMapping("/epsd/{stbId}/{now}")
+    public List<String> getEpsdIdList(@PathVariable int stbId, @PathVariable String now) {
+
+        return service.getEpsdIdList(stbId, now);
+    }
     
 }

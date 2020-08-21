@@ -27,4 +27,28 @@
         order by sum(running_time) desc
         limit 0,2;
     </select>
+
+    <select id="getEpsdIdList" parameterType="Map" resultType="string">
+        select epsd_id
+        from (select genre, sum(running_time)
+        from (select title, genre, running_time
+        from (select title, case when running_time <![CDATA[<=]]> 1800 then running_time else 300 end as running_time
+        from (
+        select title, time_to_sec(timediff(lead(device_base_time) over(order by device_base_time), device_base_time)) as running_time
+        from (
+        select *
+        from live_log
+        where stb_id = #{stbId}
+        and ((device_base_time between #{twoWeekAgoFrom} and #{twoWeekAgoTo})
+        or (device_base_time between #{oneWeekAgoFrom} and #{oneWeekAgoTo}))
+        ) as select_log) as title_sum_of_time) as title_running_time
+        left join title_full_genre
+        on title_running_time.title = title_full_genre.title_full) as title_genre_running_time
+        group by genre
+        order by sum(running_time) desc
+        limit 0,2) as genre_sum_running_time
+        left join epsd_id_genre
+        on genre_sum_running_time.genre = epsd_id_genre.genre;
+
+    </select>
 </mapper>

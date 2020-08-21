@@ -28,6 +28,13 @@ public class BtvService {
         return dao.getTopGenre(map);
     }
 
+    public List<String> getEpsdIdList(int stbId, String now) {
+        Map<String, Object> map = new HashMap<>();
+        getTimeZone(map, stbId, now);
+
+        return dao.getEpsdIdList(map);
+    }
+
     private void getTimeZone(Map<String, Object> map, int stbId, String now) {
         map.put("stbId", stbId);
         String oneWeekAgoFrom = "";
