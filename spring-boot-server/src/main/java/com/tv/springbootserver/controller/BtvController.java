@@ -35,9 +35,18 @@ public class BtvController {
         String url = "http://localhost:8080/genre/" + stbId + "/" + now;
 
         List<TopGenreDto> topGenreDtos = restTemplate.getForObject(url, List.class);
-        System.out.println(topGenreDtos.size());
+        if(topGenreDtos.size() < 2) {
+            
+        }
 
         return service.getEpsdIdList(stbId, now);
+    }
+
+    @GetMapping("/flask")
+    public String flask() {
+        String flaskurl = "http://localhost:5000/";
+        String result = restTemplate.getForObject(flaskurl, String.class);
+        return result;
     }
     
 }
