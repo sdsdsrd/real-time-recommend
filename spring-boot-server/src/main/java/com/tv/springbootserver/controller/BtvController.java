@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -15,6 +16,9 @@ public class BtvController {
 
     @Autowired
     private BtvService service;
+
+    @Autowired
+    RestTemplate restTemplate;
 
     @GetMapping("/log")
     public List<LogDto> getLog() {
@@ -28,6 +32,10 @@ public class BtvController {
 
     @GetMapping("/epsd/{stbId}/{now}")
     public List<String> getEpsdIdList(@PathVariable int stbId, @PathVariable String now) {
+        String url = "http://localhost:8080/genre/" + stbId + "/" + now;
+
+        List<TopGenreDto> topGenreDtos = restTemplate.getForObject(url, List.class);
+        System.out.println(topGenreDtos.size());
 
         return service.getEpsdIdList(stbId, now);
     }
