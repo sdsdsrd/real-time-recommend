@@ -29,7 +29,7 @@ class ItemBasedCollaborativeFiltering(Resource):
         contentId = "{" + contentId + "}"
         result = (
             self.item_based_collabor[contentId]
-            .sort_values(ascending=False)[:5]
+            .sort_values(ascending=False)[:10]
             .to_json(orient="index")
         )
         parsed = json.loads(result)
