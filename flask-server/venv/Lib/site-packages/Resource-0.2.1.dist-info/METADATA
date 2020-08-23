@@ -1,0 +1,17 @@
+Metadata-Version: 2.0
+Name: Resource
+Version: 0.2.1
+Summary: A Python library concentrated on the Resource layer of RESTful APIs.
+Home-page: https://github.com/RussellLuo/resource
+Author: RussellLuo
+Author-email: luopeng.he@gmail.com
+License: MIT
+Keywords: Resource,REST,Python
+Platform: UNKNOWN
+Requires-Dist: JsonForm (>=0.0.2)
+Requires-Dist: JsonSir (>=0.0.2)
+Requires-Dist: python-easyconfig (>=0.1.0)
+
+A Python library concentrated on the Resource layer of RESTful APIs.
+
+

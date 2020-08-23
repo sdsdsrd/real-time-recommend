@@ -1,0 +1,3 @@
+A Python library concentrated on the Resource layer of RESTful APIs.
+
+
