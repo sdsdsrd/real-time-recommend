@@ -39,24 +39,23 @@ public class BtvController {
 
     @GetMapping("/epsd/{stbId}/{now}")
     public List<String> getEpsdIdList(@PathVariable int stbId, @PathVariable String now) {
-        String url = "http://localhost:8080/genre/" + stbId + "/" + now;
+        List<TopGenreDto> topGenreDtos = getTopGenre(stbId, now);
 
-        List<TopGenreDto> topGenreDtos = restTemplate.getForObject(url, List.class);
         if(topGenreDtos.size() < 2) {
-            String contentUrl = "http://localhost:8080/content/" + stbId + "/" + now;
-            String contentId = restTemplate.getForObject(contentUrl, String.class);
+            String contentId = getContentId(stbId, now);
             String flaskUrl = "http://localhost:5000/" + contentId;
             List<String> contentIds = restTemplate.getForObject(flaskUrl, List.class);
+            for(int i=0; i<contentIds.size(); i++) {
+                System.out.println(contentIds.get(i));
+            }
         }
 
         return service.getEpsdIdList(stbId, now);
     }
 
-    @GetMapping("/flask")
-    public List<String> flask() {
-        String flaskurl = "http://localhost:5000/1AEB2712-F382-11DE-A716-D9ED132CB42A";
-        List<String> result = restTemplate.getForObject(flaskurl, List.class);
-        return result;
+    @GetMapping("/epsdids/{contentId}")
+    public List<String> getEpsdIdsFromContentId(@PathVariable String contentId) {
+        return service.getEpsdIdsFromContentId(contentId);
     }
     
 }

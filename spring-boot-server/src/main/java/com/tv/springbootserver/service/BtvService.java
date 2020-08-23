@@ -42,6 +42,10 @@ public class BtvService {
         return dao.getEpsdIdList(map);
     }
 
+    public List<String> getEpsdIdsFromContentId(String contentId) {
+        return dao.getEpsdIdsFromContentId(contentId);
+    };
+
     private void getTimeZone(Map<String, Object> map, int stbId, String now) {
         map.put("stbId", stbId);
         String oneWeekAgoFrom = "";

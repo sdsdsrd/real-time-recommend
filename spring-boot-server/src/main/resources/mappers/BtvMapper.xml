@@ -72,4 +72,10 @@
         on genre_sum_running_time.genre = epsd_id_genre.genre;
 
     </select>
+
+    <select id="getEpsdIdsFromContentId" resultType="string">
+        select epsdId from contents_genre
+        where contentId = #{contentId};
+    </select>
+
 </mapper>

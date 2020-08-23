@@ -15,4 +15,5 @@ public interface BtvDao {
     List<TopGenreDto> getTopGenre(Map<String, Object> paramMap);
     String getContentId(Map<String, Object> paramMap);
     List<String> getEpsdIdList(Map<String, Object> paramMap);
+    List<String> getEpsdIdsFromContentId(String contentId);
 }
