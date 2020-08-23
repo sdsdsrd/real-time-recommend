@@ -1,4 +1,4 @@
-## real-time-recommend
+# real-time-recommend
 
 실시간 추천 서비스
 
@@ -14,9 +14,7 @@
 
 
 
-### Table of Contents
-
----
+## Table of Contents
 
 - Examples
 - Install
@@ -25,17 +23,13 @@
 
 
 
-### Examples
-
----
+## Examples
 
 
 
 
 
-### Install
-
----
+## Install
 
 ##### flask-server : http://54.180.30.116/5000
 
@@ -54,11 +48,9 @@ The main project is a [Spring Boot](https://spring.io/guides/gs/spring-boot) app
 mvn compile
 ```
 
-##### 
 
-### Database
 
----
+## Database
 
 Install MySQL
 
