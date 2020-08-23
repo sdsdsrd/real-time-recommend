@@ -57,7 +57,7 @@ public class BtvController {
             String contentId = getContentId(stbId, now);
 
             // flas-server에서 협업필터링 알고리즘으로 해당 content와 연관된 content들을 구한다
-            String flaskUrl = "http://localhost:5000/" + contentId;
+            String flaskUrl = "http://54.180.30.116:5000/" + contentId;
             List<String> contentIds = restTemplate.getForObject(flaskUrl, List.class);
 
             // contentId들에 해당하는 epsdId들의 list 구하기
