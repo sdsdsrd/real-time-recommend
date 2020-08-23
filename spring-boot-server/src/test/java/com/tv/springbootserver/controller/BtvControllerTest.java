@@ -24,4 +24,11 @@ class BtvControllerTest {
         mockMvc.perform(get("/log"))
             .andExpect(status().isOk());
     }
+
+    @DisplayName("같은 요일 같은 시간대에 가장 많이 재생한 장르 top 2 구하기 - 입력값 정상")
+    @Test
+    void checkGetTopGenre() throws Exception {
+        mockMvc.perform(get("/content/{stbId}/{now}", "1", "20200828123000.237"))
+                .andExpect(status().isOk());
+    }
 }
