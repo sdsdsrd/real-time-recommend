@@ -28,6 +28,27 @@
         limit 0,2;
     </select>
 
+    <select id="getContentId" parameterType="Map" resultType="string">
+        select contentId
+        from (select title, case when running_time <![CDATA[<=]]>1800 then running_time else 300 end as running_time
+        from (
+        select title, time_to_sec(timediff(lead(device_base_time) over(order by device_base_time), device_base_time)) as running_time
+        from (
+        select *
+        from live_log
+        where stb_id = #{stbId}
+        and ((device_base_time between #{twoWeekAgoFrom} and #{twoWeekAgoTo})
+        or (device_base_time between #{oneWeekAgoFrom} and #{oneWeekAgoTo}))
+        ) as select_log) as title_sum_of_time
+        order by running_time desc) as title_running_time_order
+        left join (
+        select contentId, titleFull from contents_genre group by titleFull) as contentId_titleFull
+        on title_running_time_order.title = contentId_titleFull.titleFull
+        order by running_time
+        limit 0,1;
+
+    </select>
+
     <select id="getEpsdIdList" parameterType="Map" resultType="string">
         select epsd_id
         from (select genre, sum(running_time)

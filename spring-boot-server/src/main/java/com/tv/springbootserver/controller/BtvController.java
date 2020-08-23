@@ -30,13 +30,23 @@ public class BtvController {
         return service.getTopGenre(stbId, now);
     }
 
+    @GetMapping("/content/{stbId}/{now}")
+    public String getContentId(@PathVariable int stbId, @PathVariable String now) {
+        String contentId = service.getContentId(stbId, now);
+        contentId = contentId.substring(1, contentId.length()-1);
+        return contentId;
+    }
+
     @GetMapping("/epsd/{stbId}/{now}")
     public List<String> getEpsdIdList(@PathVariable int stbId, @PathVariable String now) {
         String url = "http://localhost:8080/genre/" + stbId + "/" + now;
 
         List<TopGenreDto> topGenreDtos = restTemplate.getForObject(url, List.class);
         if(topGenreDtos.size() < 2) {
-            
+            String contentUrl = "http://localhost:8080/content/" + stbId + "/" + now;
+            String contentId = restTemplate.getForObject(contentUrl, String.class);
+            String flaskUrl = "http://localhost:5000/" + contentId;
+            List<String> contentIds = restTemplate.getForObject(flaskUrl, List.class);
         }
 
         return service.getEpsdIdList(stbId, now);
