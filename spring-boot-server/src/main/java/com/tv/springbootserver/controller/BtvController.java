@@ -56,7 +56,7 @@ public class BtvController {
             // 같은 요일 같은 시간대에 가장 많이 재생한 contentId를 구하기
             String contentId = getContentId(stbId, now);
 
-            // flas-server에서 협업필터링 알고리즘으로 해당 content와 연관된 content들을 구한다
+            // flask-server에서 협업필터링 알고리즘으로 해당 content와 연관된 content들을 구한다
             String flaskUrl = "http://54.180.30.116:5000/" + contentId;
             List<String> contentIds = restTemplate.getForObject(flaskUrl, List.class);
 
