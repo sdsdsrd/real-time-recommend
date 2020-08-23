@@ -35,16 +35,16 @@ public class BtvService {
         return dao.getContentId(map);
     }
 
+    public List<String> getEpsdIdsFromContentId(String contentId) {
+        return dao.getEpsdIdsFromContentId(contentId);
+    }
+
     public List<String> getEpsdIdList(int stbId, String now) {
         Map<String, Object> map = new HashMap<>();
         getTimeZone(map, stbId, now);
 
         return dao.getEpsdIdList(map);
     }
-
-    public List<String> getEpsdIdsFromContentId(String contentId) {
-        return dao.getEpsdIdsFromContentId(contentId);
-    };
 
     private void getTimeZone(Map<String, Object> map, int stbId, String now) {
         map.put("stbId", stbId);

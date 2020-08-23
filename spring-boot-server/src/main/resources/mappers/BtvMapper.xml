@@ -49,6 +49,11 @@
 
     </select>
 
+    <select id="getEpsdIdsFromContentId" resultType="string">
+        select epsdId from contents_genre
+        where contentId = #{contentId};
+    </select>
+
     <select id="getEpsdIdList" parameterType="Map" resultType="string">
         select epsd_id
         from (select genre, sum(running_time)
@@ -71,11 +76,6 @@
         left join epsd_id_genre
         on genre_sum_running_time.genre = epsd_id_genre.genre;
 
-    </select>
-
-    <select id="getEpsdIdsFromContentId" resultType="string">
-        select epsdId from contents_genre
-        where contentId = #{contentId};
     </select>
 
 </mapper>
