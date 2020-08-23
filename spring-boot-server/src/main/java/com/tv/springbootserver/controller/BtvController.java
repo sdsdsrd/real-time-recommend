@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -45,9 +46,15 @@ public class BtvController {
             String contentId = getContentId(stbId, now);
             String flaskUrl = "http://localhost:5000/" + contentId;
             List<String> contentIds = restTemplate.getForObject(flaskUrl, List.class);
+            List<String> epsdIdList = new ArrayList<String>();
             for(int i=0; i<contentIds.size(); i++) {
+                List<String> epsdIds = getEpsdIdsFromContentId(contentIds.get(i));
+                for(int j=0; j<epsdIds.size(); j++) {
+                    epsdIdList.add(epsdIds.get(j));
+                }
                 System.out.println(contentIds.get(i));
             }
+            return epsdIdList;
         }
 
         return service.getEpsdIdList(stbId, now);
