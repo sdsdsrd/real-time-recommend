@@ -44,7 +44,7 @@
         left join (
         select contentId, titleFull from contents_genre group by titleFull) as contentId_titleFull
         on title_running_time_order.title = contentId_titleFull.titleFull
-        order by running_time
+        order by running_time desc
         limit 0,1;
 
     </select>
