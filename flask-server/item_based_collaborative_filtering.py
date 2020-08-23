@@ -26,10 +26,11 @@ class ItemBasedCollaborativeFiltering(Resource):
     def get(self, contentId):
         # print(contentId)
         # print(self.item_based_collabor.columns)
+        contentId = "{" + contentId + "}"
         result = (
             self.item_based_collabor[contentId]
             .sort_values(ascending=False)[:5]
             .to_json(orient="index")
         )
         parsed = json.loads(result)
-        return parsed
+        return list(parsed.keys())

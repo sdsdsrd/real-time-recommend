@@ -43,9 +43,9 @@ public class BtvController {
     }
 
     @GetMapping("/flask")
-    public String flask() {
-        String flaskurl = "http://localhost:5000/";
-        String result = restTemplate.getForObject(flaskurl, String.class);
+    public List<String> flask() {
+        String flaskurl = "http://localhost:5000/1AEB2712-F382-11DE-A716-D9ED132CB42A";
+        List<String> result = restTemplate.getForObject(flaskurl, List.class);
         return result;
     }
     
