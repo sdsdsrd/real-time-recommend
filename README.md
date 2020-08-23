@@ -17,8 +17,10 @@
 ## Table of Contents
 
 - Examples
-- Install
-- Database
+- Prerequisites
+  - flask-server
+  - spring-boot-server
+  - database
 - Usage
 
 
@@ -29,9 +31,13 @@
 
 
 
-## Install
 
-##### flask-server : http://54.180.30.116/5000
+
+
+
+## Prerequisites
+
+### flask-server : http://54.180.30.116/5000
 
 ```python
 pip install flask
@@ -40,7 +46,7 @@ pip install pandas
 pip install sklearn
 ```
 
-##### spring-boot-server : http://54.180.30.116/8080
+### spring-boot-server : http://54.180.30.116/8080
 
 The main project is a [Spring Boot](https://spring.io/guides/gs/spring-boot) application built using [Maven](https://spring.io/guides/gs/maven/).
 
@@ -48,13 +54,12 @@ The main project is a [Spring Boot](https://spring.io/guides/gs/spring-boot) app
 mvn compile
 ```
 
-
-
-## Database
+### Database
 
 Install MySQL
 
 ```yml
+## application.yml
 url: jdbc:mysql://db-1.cx9greozla0d.ap-northeast-2.rds.amazonaws.com:3306
 ```
 
