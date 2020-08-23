@@ -8,7 +8,7 @@
 
   
 
-![flow](C:\Users\SoYeon\Documents\SK브로드밴드\real-time-recommend\flow.png)
+![flow](flow.png)
 
 
 
