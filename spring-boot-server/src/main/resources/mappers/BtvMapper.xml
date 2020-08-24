@@ -55,7 +55,7 @@
     </select>
 
     <select id="getEpsdIdList" parameterType="Map" resultType="string">
-        select epsd_id
+        select epsd_id, count(*) as count
         from (select genre, sum(running_time)
         from (select title, genre, running_time
         from (select title, case when running_time <![CDATA[<=]]> 1800 then running_time else 300 end as running_time
@@ -74,7 +74,10 @@
         order by sum(running_time) desc
         limit 0,2) as genre_sum_running_time
         left join epsd_id_genre
-        on genre_sum_running_time.genre = epsd_id_genre.genre;
+        on genre_sum_running_time.genre = epsd_id_genre.genre
+        group by epsd_id
+        having count > 1;
+
 
     </select>
 
