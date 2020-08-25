@@ -44,12 +44,12 @@ public class BtvController {
         List<TopGenreDto> topGenreDtos = getTopGenre(stbId, now);
 
         boolean hasTwoOrMoreTopGenre = true;
-        /* 데이터가 부족하여 세부장르가 구해지지 않는 경우 ex)영화 */
+        /* 경우1: 데이터가 부족하여 세부장르가 구해지지 않는 경우 ex)영화 */
         if(topGenreDtos.size() < 2) {
             hasTwoOrMoreTopGenre = false;
         }
         else {
-            /* getTopGenre에서 구한 top2 장르가 모두 대분류 장르인 경우 ex)영화, 드라마 */
+            /* 경우2: getTopGenre에서 구한 top2 장르가 모두 대분류 장르인 경우 ex)영화, 드라마 */
             String[] mainCategory = {"영화", "드라마", "예능", "시사교양", "다큐", "키즈", "애니", "스포츠", "교육"};
             int mainCtgrCount = 0;
             for(int i=0; i<topGenreDtos.size(); i++) {
@@ -70,12 +70,13 @@ public class BtvController {
             String epsdId = getTopEpsdId(stbId, now);
 
             // flask-server에서 협업필터링 알고리즘으로 해당 content와 연관된 content들을 구한다
-            String flaskUrl = "http://54.180.30.116:5000/" + epsdId;
+            String flaskUrl = "http://localhost:5000/" + epsdId;
             List<String> epsdIds = restTemplate.getForObject(flaskUrl, List.class);
 
             return epsdIds;
         }
 
+        /* 경우3: 대분류+세부장르가 구해지는 경우 */
         return service.getEpsdIdList(stbId, now);
     }
 
