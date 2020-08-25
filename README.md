@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/sdsdsrd/real-time-recommend.svg?branch=master)](https://travis-ci.org/sdsdsrd/real-time-recommend)
+
 # real-time-recommend
 
 실시간 추천 서비스
