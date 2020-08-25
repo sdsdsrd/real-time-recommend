@@ -16,7 +16,7 @@ before_install:
   - chmod +x ./mvnw
 
 before_script:
-  - cd ~/spring-boot-server
+  - cd ./spring-boot-server
 
 after_success:
   - ./mvnw jacocoTestReport coveralls
