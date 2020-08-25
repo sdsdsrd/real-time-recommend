@@ -1,0 +1,12 @@
+language: java
+jdk:
+  - openjdk11
+
+branches:
+  only:
+    - master
+
+# Travis CI 서버의 Home
+cache:
+  directories:
+    - $HOME/.m2
