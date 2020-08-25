@@ -12,7 +12,7 @@ cache:
     - '$HOME/.m2'
 
 before_install:
-  - chmod +x mvnw
+  - chmod +x ./spring-boot-server/mvnw
 
 after_success:
-  - ./mvnw jacocoTestReport coveralls
+  - ./spring-boot-server/mvnw jacocoTestReport coveralls
