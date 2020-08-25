@@ -7,10 +7,10 @@ import json
 class ItemBasedCollaborativeFiltering(Resource):
     ratings = pd.read_csv("ratings.csv")
     contents = pd.read_csv("contents.csv")
-    stb_content_rating = pd.merge(ratings, contents, on="contentId")
+    stb_content_rating = pd.merge(ratings, contents, on="epsdId")
 
     content_stb_rating = stb_content_rating.pivot_table(
-        "rating", index="contentId", columns="stbId"
+        "rating", index="epsdId", columns="stbId"
     )
 
     content_stb_rating.fillna(0, inplace=True)
@@ -23,13 +23,12 @@ class ItemBasedCollaborativeFiltering(Resource):
         columns=content_stb_rating.index,
     )
 
-    def get(self, contentId):
+    def get(self, epsdId):
         # print(contentId)
         # print(self.item_based_collabor.columns)
-        contentId = "{" + contentId + "}"
         result = (
-            self.item_based_collabor[contentId]
-            .sort_values(ascending=False)[:10]
+            self.item_based_collabor[epsdId]
+            .sort_values(ascending=False)[:8]
             .to_json(orient="index")
         )
         parsed = json.loads(result)

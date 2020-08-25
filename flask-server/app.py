@@ -8,7 +8,7 @@ app = Flask(__name__)
 api = Api(app)
 
 
-api.add_resource(ItemBasedCollaborativeFiltering, "/<contentId>")
+api.add_resource(ItemBasedCollaborativeFiltering, "/<epsdId>")
 
 
 if __name__ == "__main__":

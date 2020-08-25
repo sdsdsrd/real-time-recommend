@@ -13,7 +13,6 @@ import java.util.Map;
 public interface BtvDao {
     List<LogDto> getLog();
     List<TopGenreDto> getTopGenre(Map<String, Object> paramMap);
-    String getContentId(Map<String, Object> paramMap);
-    List<String> getEpsdIdsFromContentId(String contentId);
+    String getTopEpsdId(Map<String, Object> paramMap);
     List<String> getEpsdIdList(Map<String, Object> paramMap);
 }

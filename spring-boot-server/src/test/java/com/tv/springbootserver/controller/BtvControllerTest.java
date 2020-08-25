@@ -32,20 +32,6 @@ class BtvControllerTest {
                 .andExpect(status().isOk());
     }
 
-    @DisplayName("같은 요일 같은 시간대에 가장 많이 재생한 contentId 구하기")
-    @Test
-    void checkGetContentId() throws Exception {
-        mockMvc.perform(get("/content/{stbId}/{now}", "1", "20200828123000.237"))
-                .andExpect(status().isOk());
-    }
-
-    @DisplayName("contentId에 해당하는 epsdId들 구하기")
-    @Test
-    void checkGetEpsdIdsFromContentId() throws Exception {
-        mockMvc.perform(get("/epsdids/{contentId}", "{1B39EF82-210C-11DF-B973-D7B3AE21195D}"))
-                .andExpect(status().isOk());
-    }
-
     @DisplayName("vod 추천 목록 epsdId 가져오기")
     @Test
     void checkGetEpsdIdList() throws Exception {
