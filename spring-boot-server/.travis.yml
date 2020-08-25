@@ -6,6 +6,12 @@ branches:
   only:
     - master
 
+install: true
+
+script:
+  - ./mvnw clean install
+  - bash <(curl -s https://codecov.io/bash)
+
 # Travis CI 서버의 Cache 활성화
 cache:
   directories:
