@@ -42,6 +42,7 @@ public class BtvService {
         return dao.getEpsdIdList(map);
     }
 
+    /* 전 2주 동안, 현재 시청시각을 기준으로 +-1시간 구하기*/
     private void getTimeZone(Map<String, Object> map, int stbId, String now) {
         map.put("stbId", stbId);
         String oneWeekAgoFrom = "";
