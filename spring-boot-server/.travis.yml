@@ -6,17 +6,13 @@ branches:
   only:
     - master
 
-install: true
-
-script:
-  - ./mvnw clean install
-  - bash <(curl -s https://codecov.io/bash)
-
 # Travis CI 서버의 Cache 활성화
 cache:
   directories:
-    - '$HOME/.m2/repository'
-    - '$HOME/.gradle'
+    - '$HOME/.m2'
+
+before_install:
+  - chmod +x mvnw
 
 after_success:
   - ./mvnw jacocoTestReport coveralls
